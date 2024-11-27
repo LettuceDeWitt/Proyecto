@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si los campos requeridos están vacíos
     if (!empty($game_name) && !empty($game_year) && !empty($game_genre) && !empty($game_company)) {
         // Insertar en la base de datos sin manejar imágenes
-        $stmt = $conexion->prepare("INSERT INTO videojuegos (titulo, genero, anio, empresa, xbox, play, nintendo, pc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conexion->prepare("INSERT INTO videojuegos (titulo, genero, año, empresa, xbox, play, nintendo, pc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssisssss", $game_name, $game_genre, $game_year, $game_company, $xbox, $play, $nintendo, $pc);
 
         if ($stmt->execute()) {

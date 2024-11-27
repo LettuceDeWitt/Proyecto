@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "El videojuego ya está registrado.";
         } else {
             // Insertar en la base de datos
-            $stmt = $conexion->prepare("INSERT INTO videojuegos (titulo, genero, anio, empresa, xbox, play, nintendo, pc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt = $conexion->prepare("INSERT INTO videojuegos (titulo, genero, año, empresa, xbox, play, nintendo, pc) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssisssss", $game_name, $game_genre, $game_year, $game_company, $xbox, $play, $nintendo, $pc);
 
             if ($stmt->execute()) {
@@ -190,7 +190,7 @@ $users_result = $conexion->query($users_sql);
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='col s12 m6 l4 game-item'>";
                     echo "<h5>" . $row['titulo'] . "</h5>";
-                    echo "<p>Año: " . $row['anio'] . "</p>";
+                    echo "<p>Año: " . $row['año'] . "</p>";
                     echo "<p>Género: " . $row['genero'] . "</p>";
                     echo "<p>Empresa: " . $row['empresa'] . "</p>";
                     echo "<p>Plataformas: Xbox: " . $row['xbox'] . ", PlayStation: " . $row['play'] . ", Nintendo: " . $row['nintendo'] . ", PC: " . $row['pc'] . "</p>";
