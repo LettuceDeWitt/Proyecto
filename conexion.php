@@ -1,6 +1,6 @@
 <?php
 // Determinar si estamos en un entorno de producción (servidor remoto) o desarrollo (local)
-$is_local = false; // Cambia a false cuando subas a producción
+$is_local = true; // Cambia a false cuando subas a producción
 
 if ($is_local) {
     // Configuración para el entorno local (tu máquina)

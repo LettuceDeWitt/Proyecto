@@ -76,6 +76,14 @@ $conexion->close();
 
             <button type="submit" class="btn waves-effect waves-light">Iniciar sesión</button>
         </form>
+
+        <br>
+
+        <!-- Botón para redirigir a registroUsuarios.php -->
+        <form action="registroUsuarios.php">
+            <button type="submit" class="btn waves-effect waves-light">Agregar Usuario</button>
+        </form>
     </div>
 </body>
 </html>
+<?php include_once './footer.php'; ?>

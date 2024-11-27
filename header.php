@@ -69,17 +69,11 @@
 
       <!-- Menú para pantallas grandes -->
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Contacto</a></li>
         <li><a href="loginAdmin.php">Iniciar sesión</a></li>
       </ul>
 
       <!-- Menú para pantallas pequeñas (hamburguesa) -->
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="#"><i class="material-icons">people</i> Nosotros</a></li>
-        <li><a href="#"><i class="material-icons">build</i> Servicios</a></li>
-        <li><a href="#"><i class="material-icons">contact_mail</i> Contacto</a></li>
         <li><a href="loginAdmin.php"><i class="material-icons">login</i> Iniciar sesión</a></li>
       </ul>
 

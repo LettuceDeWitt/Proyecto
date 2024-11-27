@@ -77,9 +77,30 @@ if (isset($_GET['delete_id'])) {
     $delete_stmt->close();
 }
 
+// Lógica para eliminar un usuario
+if (isset($_GET['delete_user_id'])) {
+    $delete_user_id = $_GET['delete_user_id'];
+
+    // Eliminar el usuario de la base de datos
+    $delete_user_query = "DELETE FROM usuarios WHERE id = ?";
+    $delete_user_stmt = $conexion->prepare($delete_user_query);
+    $delete_user_stmt->bind_param("i", $delete_user_id);
+    if ($delete_user_stmt->execute()) {
+        $delete_user_success = "Usuario eliminado exitosamente!";
+    } else {
+        $delete_user_error = "Error al eliminar el usuario: " . $conexion->error;
+    }
+
+    $delete_user_stmt->close();
+}
+
 // Lógica para obtener los videojuegos desde la base de datos
 $sql = "SELECT * FROM videojuegos";
 $result = $conexion->query($sql);
+
+// Lógica para obtener los usuarios desde la base de datos
+$users_sql = "SELECT * FROM usuarios";
+$users_result = $conexion->query($users_sql);
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +111,7 @@ $result = $conexion->query($sql);
     <title>Administración de Videojuegos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-        .game-item {
+        .game-item, .user-item {
             margin: 20px;
             text-align: center;
         }
@@ -116,6 +137,8 @@ $result = $conexion->query($sql);
         <?php if (isset($error_message)) echo "<p class='red-text'>$error_message</p>"; ?>
         <?php if (isset($delete_success)) echo "<p class='green-text'>$delete_success</p>"; ?>
         <?php if (isset($delete_error)) echo "<p class='red-text'>$delete_error</p>"; ?>
+        <?php if (isset($delete_user_success)) echo "<p class='green-text'>$delete_user_success</p>"; ?>
+        <?php if (isset($delete_user_error)) echo "<p class='red-text'>$delete_user_error</p>"; ?>
 
         <!-- Formulario para agregar un videojuego -->
         <h4>Agregar Videojuego</h4>
@@ -179,9 +202,27 @@ $result = $conexion->query($sql);
             }
             ?>
         </div>
+
+        <!-- Mostrar usuarios -->
+        <h4>Usuarios Registrados</h4>
+        <div class="row">
+            <?php
+            if ($users_result->num_rows > 0) {
+                while ($user = $users_result->fetch_assoc()) {
+                    echo "<div class='col s12 m6 l4 user-item'>";
+                    echo "<h5>" . $user['nombre_usuario'] . "</h5>"; // Cambié 'nombre' por 'nombre_usuario'
+                    echo "<p>Correo: " . $user['email'] . "</p>";
+                    echo "<a href='?delete_user_id=" . $user['id'] . "' class='delete-icon'>Eliminar Usuario</a>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>No hay usuarios registrados.</p>";
+            }
+            ?>
+        </div>
     </div>
 
-    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

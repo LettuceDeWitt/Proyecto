@@ -52,10 +52,7 @@
                                     PlayStation: ' . $play . '<br>
                                     Nintendo: ' . $nintendo . '<br>
                                     PC: ' . $pc . '
-                                </p>
-                                <div class="center">
-                                    <img src="images/' . $imagen . '" alt="' . $titulo . '" style="width:100%; max-width:200px; height:auto;">
-                                </div>
+                               
                             </div>
                         </div>';
                         // Agregar título a los mostrados
